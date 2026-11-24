@@ -1,6 +1,7 @@
 
 import { useCallback, useEffect, useState } from 'react'
 import axios from 'axios'
+import Navbar from '../components/Navbar.jsx'
 import SearchBar from '../components/SearchBar.jsx'
 import BookGrid from '../components/BookGrid.jsx'
 import '../App.css'
@@ -36,12 +37,7 @@ function HomePage() {
 
   return (
     <div className="app">
-      <header className="navbar">
-        <h1>Library Management System</h1>
-        <nav>
-          <a href="/">Home</a>
-        </nav>
-      </header>
+      <Navbar />
 
       <main className="main-content">
         <section className="welcome">

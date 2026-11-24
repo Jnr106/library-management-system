@@ -1,7 +1,24 @@
 
 import { Link } from 'react-router-dom'
+import { useContext } from 'react'
+import { ReadingListContext } from '../context/ReadingListContext.jsx'
 
 function BookCard({ book }) {
+  const { readingList, addBook, removeBook } =
+    useContext(ReadingListContext)
+
+  const isAdded = readingList.some(
+    (item) => item.id === book.id
+  )
+
+  function handleReadingList() {
+    if (isAdded) {
+      removeBook(book.id)
+    } else {
+      addBook(book)
+    }
+  }
+
   return (
     <article className="book-card">
       <div className="book-cover">
@@ -19,9 +36,19 @@ function BookCard({ book }) {
           Published: {book.publishedYear || 'Unknown'}
         </p>
 
-        <Link to={`/books/${book.id}`} className="details-link">
-          View Details
-        </Link>
+        <div className="book-actions">
+          <Link to={`/books/${book.id}`} className="details-link">
+            View Details
+          </Link>
+
+          <button
+            type="button"
+            onClick={handleReadingList}
+            className="reading-list-button"
+          >
+            {isAdded ? 'Remove from Reading List' : 'Add to Reading List'}
+          </button>
+        </div>
       </div>
     </article>
   )

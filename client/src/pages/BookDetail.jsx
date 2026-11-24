@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import axios from 'axios'
+import Navbar from '../components/Navbar.jsx'
 import '../App.css'
 
 const API_URL = import.meta.env.VITE_API_URL
@@ -37,10 +38,13 @@ function BookDetail() {
 
   if (error) {
     return (
-      <main className="main-content">
-        <p className="error-message">{error}</p>
-        <Link to="/">Back to Catalogue</Link>
-      </main>
+      <div className="app">
+        <Navbar />
+        <main className="main-content">
+          <p className="error-message">{error}</p>
+          <Link to="/">Back to Catalogue</Link>
+        </main>
+      </div>
     )
   }
 
@@ -48,12 +52,7 @@ function BookDetail() {
 
   return (
     <div className="app">
-      <header className="navbar">
-        <h1>Library Management System</h1>
-        <nav>
-          <Link to="/">Home</Link>
-        </nav>
-      </header>
+      <Navbar />
 
       <main className="main-content">
         <section className="book-detail">
